@@ -12,7 +12,7 @@ def create_s3_connection():
     return s3
 
 
-def log(action, e):
+def log_error(action, e):
     logger = logging.getLogger(__name__)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -21,3 +21,19 @@ def log(action, e):
     logger.error(f'Error: {e}')
 
 
+def log_success(action):
+    logger = logging.getLogger(__name__)
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    logger.info(f'Successfully completed {action} at {timestamp}')
+
+
+def view_all_active_buckets():
+    try:
+        s3 = create_s3_connection()
+        buckets = s3.list_buckets()
+
+        for bucket in buckets["Buckets"]:
+            print(bucket["Name"])
+        log_success("Viewing buckets")
+    except Exception as e:
+        log_error("Viewing buckets", e)
