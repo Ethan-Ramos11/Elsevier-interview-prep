@@ -31,7 +31,6 @@ def view_all_active_buckets():
     try:
         s3 = create_s3_connection()
         buckets = s3.list_buckets()
-
         for bucket in buckets["Buckets"]:
             print(bucket["Name"])
         log_success("Viewing buckets")
@@ -39,4 +38,17 @@ def view_all_active_buckets():
         log_error("Viewing buckets", e)
 
 
-view_all_active_buckets()
+def create_new_bucket():
+    try:
+        s3 = create_s3_connection()
+        timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M%S")
+        bucket_name = f"ethan-test{timestamp}"
+        region = "us-east-2"
+        s3.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={
+                         'LocationConstraint': region})
+        log_success(f"Creating new bucket {bucket_name}")
+        return bucket_name
+    except Exception as e:
+        log_error("Creating new bucket", e)
+
+
