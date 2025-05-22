@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 
 logging.basicConfig(filename='example.log',
-                    encoding='utf-8', level=logging.DEBUG)
+                    encoding='utf-8', level=logging.INFO)
 
 
 def create_s3_connection():
@@ -37,3 +37,6 @@ def view_all_active_buckets():
         log_success("Viewing buckets")
     except Exception as e:
         log_error("Viewing buckets", e)
+
+
+view_all_active_buckets()
