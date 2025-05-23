@@ -38,3 +38,4 @@ example.log
 # AWS
 .aws/
 credentials 
+*.log*
