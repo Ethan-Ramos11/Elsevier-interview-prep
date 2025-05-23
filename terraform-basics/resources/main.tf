@@ -10,9 +10,9 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = var.curr_region
 }
 
 resource "aws_s3_bucket" "test-buckets"{
-  bucket_prefix = "er"
+  bucket_prefix = var.bucket_prefix
 }
