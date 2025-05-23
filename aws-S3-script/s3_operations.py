@@ -139,7 +139,7 @@ def upload_file(bucket_name: str, file_path: str, file_type: str, bucket_list: L
         s3.upload_file(file_path, bucket_name, object_name)
         log_success(f"Uploading {file_path} to bucket {bucket_name}")
     except Exception as e:
-        log_error("Upoading bucket", e)
+        log_error("Uploading bucket", e)
 
 def view_objects(bucket_name: str) -> List[str]:
     """
