@@ -2,6 +2,7 @@ import boto3
 import logging
 from datetime import datetime
 import os
+import questionary 
 logging.basicConfig(filename='aws.log',
                     encoding='utf-8', level=logging.INFO)
 
@@ -123,9 +124,27 @@ def upload_file(bucket_name, file_path, file_type, bucket_list):
     except Exception as e:
         log_error("Upoading bucket", e)
 
-def delete_object(bucket_name, object_key):
-    s3 = create_s3_connection()
+def view_objects(bucket_name):
     try:
+        s3 = create_s3_connection()
+        objects = s3.list_objects(Bucket=bucket_name)
+        object_key = []
+        if "Contents" in objects and objects["Contents"]:
+            print("---------")
+            print(f"{bucket_name} content: ")
+            for obj in objects["Contents"]:
+                object_key.append(obj["Key"])
+                print(obj["Key"])
+        else:
+            print(f'No objects in {bucket_name}')
+        log_success(f"Displayed {bucket_name} content")
+        return object_key
+    except Exception as e:
+        log_error("Could not view bucket content", e)
+
+def delete_object(bucket_name, object_key):
+    try:
+        s3 = create_s3_connection()
         s3.delete_object(Bucket=bucket_name, Key=object_key)
         log_success(f"Deleted {object_key} from {bucket_name}")
     except Exception as e:
@@ -143,6 +162,3 @@ def delete_bucket(bucket_name):
         log_success(f"Deleted bucket {bucket_name}")
     except Exception as e:
         log_error("Deleting bucket", e)
-
-
-delete_bucket("ethan-test2025-05-22-18-2049")
