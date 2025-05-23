@@ -122,3 +122,27 @@ def upload_file(bucket_name, file_path, file_type, bucket_list):
         log_success(f"Uploading {file_path} to bucket {bucket_name}")
     except Exception as e:
         log_error("Upoading bucket", e)
+
+def delete_object(bucket_name, object_key):
+    s3 = create_s3_connection()
+    try:
+        s3.delete_object(Bucket=bucket_name, Key=object_key)
+        log_success(f"Deleted {object_key} from {bucket_name}")
+    except Exception as e:
+        log_error("Deleting object", e)
+
+def delete_bucket(bucket_name):
+    try:
+        s3 = create_s3_connection()
+        objects = s3.list_objects(Bucket=bucket_name)
+        if objects["Contents"]:
+            for obj in objects["Contents"]:
+                delete_object(bucket_name, obj["Key"])
+
+        s3.delete_bucket(Bucket=bucket_name)
+        log_success(f"Deleted bucket {bucket_name}")
+    except Exception as e:
+        log_error("Deleting bucket", e)
+
+
+delete_bucket("ethan-test2025-05-22-18-2049")
