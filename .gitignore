@@ -39,3 +39,23 @@ example.log
 .aws/
 credentials 
 *.log*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Backup files  
+*.tfstate.backup
