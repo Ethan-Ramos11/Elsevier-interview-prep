@@ -191,4 +191,4 @@ Potential expansions for continued learning:
 
 ---
 
-_Built as part of Elsevier Systems Engineering interview preparation - demonstrating cloud expertise and professional development practices._
+_Built as part of Elsevier Systems Engineering interview preparation - demonstrating basic cloud skills and development best practices._
