@@ -61,3 +61,10 @@ crash.*.log
 *.tfstate.backup
 
 .db
+
+# Flask
+instance/
+*.sqlite3
+.env
+.flaskenv
+flask-cicd-demo/env/
