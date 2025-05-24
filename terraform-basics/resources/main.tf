@@ -15,4 +15,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "test-buckets"{
   bucket_prefix = var.bucket_prefix
+  
+  force_destroy = true
+  tags = var.tags
 }

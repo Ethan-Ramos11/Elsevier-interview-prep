@@ -66,18 +66,14 @@ variable "enable_logging" {
   default     = true
 }
 
-variable "retention_hrs" {
-  description = "Number of hours to retain objects"
-  type        = number
-  default     = 1
-}
+
 
 # Resource Tags
 variable "tags" {
   description = "Resource tags"
   type = map(string)
   default = {
-    Environment = "development"
+    Environment = "dev"           
     Project     = "elsevier-prep"
     ManagedBy   = "terraform"
     Purpose     = "document-storage"
