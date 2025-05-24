@@ -1,5 +1,5 @@
 import sqlite3
-from schema import SCHEMA
+from .schema import SCHEMA
 
 
 def create_connection():
@@ -47,6 +47,15 @@ def validate_connection(conn):
         return True
     except sqlite3.Error:
         return False
+
+
+def to_dict(task):
+    return {
+        "task_id": task[0],
+        "name": task[1],
+        "description": task[2],
+        "completed": task[3]
+    }
 
 
 def main():
