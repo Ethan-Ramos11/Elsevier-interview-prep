@@ -1,6 +1,6 @@
 # AWS S3 Operations Manager
 
-A professional command-line tool for managing AWS S3 buckets and objects, built as part of interview preparation for a Systems Engineering role at Elsevier.
+A command-line tool for managing AWS S3 buckets and objects, built as part of interview preparation for a Systems Engineering role at Elsevier.
 
 ## 🎯 Project Goals
 
@@ -191,4 +191,4 @@ Potential expansions for continued learning:
 
 ---
 
-_Built as part of Elsevier Systems Engineering interview preparation - demonstrating basic cloud skills and development best practices._
+_Built as part of Systems Engineering interview preparation - demonstrating basic cloud skills and development best practices._
