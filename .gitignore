@@ -59,3 +59,5 @@ crash.*.log
 
 # Backup files  
 *.tfstate.backup
+
+.db
