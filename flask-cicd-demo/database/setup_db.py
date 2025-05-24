@@ -40,7 +40,7 @@ def create_tables(conn, cursor):
 
 
 def validate_connection(conn):
-    if conn == None:
+    if conn is None:
         return False
     try:
         conn.execute("SELECT 1")

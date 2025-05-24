@@ -1,0 +1,38 @@
+name: Todo CI Integration
+run-name: ${{ github.actor }} is making a commit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+
+      - name: Download dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check python dependencies
+        run: pip check
+
+      - name: Initialize test database
+        run: python database/setup_db.py
+
+      - name: Lint code
+        run: flake8 app/ tests/
+
+      - name: Check formatting
+        run: black --check app/ tests/
+
+      - name: Run tests
+        run: pytest tests/ -v
