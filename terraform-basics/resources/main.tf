@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "test-buckets"{
-  bucket_prefix = var.bucket_prefix
+  bucket_prefix = "${var.bucket_prefix}-${var.project_name}-${var.environment}"
   
   force_destroy = true
   tags = var.tags
